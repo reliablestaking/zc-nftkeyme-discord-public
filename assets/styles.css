@@ -1,0 +1,163 @@
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background-color: #000000;
+  color: white;
+}
+.layout {
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto 1fr auto;
+  grid-template-areas:
+    "header"
+    "main"
+    "footer";
+}
+header {
+  grid-area: header;
+}
+header,
+footer {
+  padding: 16px;
+  background-color: #0288d1;
+  color: white;
+  font-size: 14px;
+}
+footer {
+  grid-area: footer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  place-content: center;
+  gap: 8px;
+}
+footer a,
+footer a:visited,
+footer a:active,
+footer a:hover {
+  color: white;
+}
+header h1 {
+  margin: 0;
+  font-size: 20px;
+}
+
+.hero {
+  min-height: 100%;
+  padding: 64px;
+  height: 1344px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  place-content: center;
+}
+
+.hero::before {
+  background-position: right;
+  background-size: cover;
+  background-repeat: no-repeat;
+  content: "";
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+}
+
+.hero.locked::before {
+  background-position: left;
+}
+
+.hero.unlocked::before {
+  background-image: url("/static/zc-unlocked-large.jpg");
+}
+.hero.locked::before {
+  background-image: url("/static/zc-locked-large.jpg");
+}
+
+.hero-title {
+  position: relative;
+  text-align: center;
+  font-size: 40px;
+}
+
+.hero-description {
+  position: relative;
+  text-align: center;
+  font-size: 24px;
+}
+
+nav {
+  position: relative;
+}
+
+.hero-wrapper {
+  max-width: 35%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 48px;
+}
+
+.locked .hero-wrapper {
+  align-self: flex-end;
+}
+
+@media only screen and (max-width: 2080px) {
+  .hero {
+    height: 1126px;
+  }
+  .hero-wrapper {
+    margin-right: 48px;
+  }
+}
+
+@media only screen and (max-width: 1600px) {
+  .hero {
+    height: 860px;
+  }
+  .hero::before {
+    background-size: 100% 100%;
+  }
+  .hero.unlocked::before {
+    background-image: url("/static/zc-unlocked-med.jpg");
+  }
+  .hero.locked::before {
+    background-image: url("/static/zc-locked-med.jpg");
+  }
+  .hero-wrapper {
+    margin-right: 24px;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .hero {
+    flex-direction: column;
+    gap: 24px;
+    height: auto;
+  }
+  .hero-title {
+    font-size: 36px;
+  }
+  .hero-description {
+    font-size: 18px;
+  }
+  .hero-wrapper {
+    max-width: 60%;
+    margin-right: 0;
+  }
+}
+
+@media only screen and (max-width: 420px) {
+  .hero.unlocked::before {
+    background-image: url("/static/zc-unlocked-small.jpg");
+  }
+  .hero.locked::before {
+    background-image: url("/static/zc-locked-small.jpg");
+  }
+}
